@@ -36,12 +36,12 @@ function fetchSuccess({ totalHits }) {
   
 }
 
-function fetchError() {
-  Notiflix.Notify.failure(`Page is not defined. Please try again.`, {
-    clickToClose: true,
-    timeout: 3000,
-  });
-}
+// function fetchError() {
+//   Notiflix.Notify.failure(`Page is not defined. Please try again.`, {
+//     clickToClose: true,
+//     timeout: 3000,
+//   });
+// }
 
 function fetchFailure() {
   Notiflix.Notify.failure(
@@ -52,6 +52,15 @@ function fetchFailure() {
     }
   );
 }
+
+function fetchNotify() {
+  Notiflix.Notify.info(
+        `We're sorry, but you've reached the end of search results.`,
+        {
+          clickToClose: true,
+          timeout: 3000,
+        }
+)}
 
 function render({ hits, totalHits }) {
   if (totalHits === 0) {
