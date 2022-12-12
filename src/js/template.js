@@ -1,16 +1,19 @@
 export const markupPhotoGallery = ({
-    webformatURL,
-    largeImageURL,
-    tags,
-    likes,
-    views,
-    comments,
-    downloads,
-  }) => {
-    `<div class="photo-card">
+  webformatURL,
+  largeImageURL,
+  tags,
+  likes,
+  views,
+  comments,
+  downloads,
+}) =>
+  `
+  <div class="photo-card">
+  <div class="gallery-img">
     <a class="gallery__item" href="${largeImageURL}">
-      <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+      <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" width="275" height="200"/>
       </a>
+      </div>
       <div class="info">
         <p class="info-item">
           <b>Likes</b>
@@ -29,5 +32,6 @@ export const markupPhotoGallery = ({
           <span>${downloads}</span>
         </p>
       </div>
-    </div>`;
-  };
+      
+    </div>
+    `;

@@ -4,6 +4,14 @@ import Notiflix from 'notiflix';
 import GalleryApiService from './galleryService';
 import { markupPhotoGallery } from './template';
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+  disableScroll: false,
+  scrollZoom: false,
+});
+
 const ref = {
   searchForm: document.querySelector('#search-form'),
   photosContainer: document.querySelector('.gallery'),
@@ -12,9 +20,29 @@ const ref = {
 
 const galleryApiService = new GalleryApiService();
 
-function render(imagesList) {
-  const renderImgContainer = imagesList.map(markupPhotoGallery).join('');
-  ref.photosContainer.insertAdjacentHTML('beforeend', renderImgContainer);
+function render(hits) {
+  if (hits.length === 0) {
+    Notiflix.Notify.failure(
+      `Sorry, there are no images matching your search query. Please try again.`,
+      {
+        clickToClose: true,
+        timeout: 3000,
+      }
+    );
+    return;
+  }
+  const renderImgContainer = hits.map(markupPhotoGallery);
+  ref.photosContainer.insertAdjacentHTML(
+    'beforeend',
+    renderImgContainer.join('')
+  );
+}
+
+function onFetchError() {
+  Notiflix.Notify.failure(`Page is not defined. Please try again.`, {
+    clickToClose: true,
+    timeout: 3000,
+  });
 }
 
 ref.searchForm.addEventListener('submit', onSearch);
@@ -24,21 +52,23 @@ function onSearch(e) {
   e.preventDefault();
   galleryApiService.query = e.currentTarget.elements.searchQuery.value;
   galleryApiService.resetPage();
-  galleryApiService.galleryImg().then(render);
-  
+
+  galleryApiService
+    .galleryImg()
+    .then(data => {
+      clearGallery();
+      render(data.hits);
+    })
+    .catch(onFetchError);
 }
 
 function onLoadMore() {
-  galleryApiService.galleryImg();
+  galleryApiService.galleryImg().then(data => render(data.hits));
 }
 
-// SimpleLightbox('.gallery a', {
-//     captionsData: 'alt',
-//     captionPosition: 'bottom',
-//     captionDelay: 250,
-//     disableScroll: false,
-//     scrollZoom: false,
-//   });
+function clearGallery() {
+  ref.photosContainer.innerHTML = '';
+}
 
 // fetch(
 //     'https://restcountries.com/v3.1/name/ukraine'
