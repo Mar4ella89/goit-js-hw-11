@@ -11,13 +11,13 @@
   <body>
     <div class="search-container">
       <form class="search-form" id="search-form">
-        <input
+        <input class="search-input"
           type="text"
           name="searchQuery"
           autocomplete="off"
           placeholder="Search images..."
         />
-        <button type="submit">Search</button>
+        <button type="submit" class="search-btn">Search</button>
       </form>
     </div>
 
@@ -25,7 +25,11 @@
       <!-- Карточки изображений -->
     </div>
 
-    <button type="button" class="load-more">Load more</button>
+    <!-- <button type="button" class="load-more">Load more</button> -->
+    <button type="button" class="btn btn-primary button" data-action="load-more" disabled>
+      <span class="spinner-border spinner-border-sm spinner is-hidden" role="status" aria-hidden="true"></span>
+      <span class="label">Показать еще</span>
+    </button>
     <script src="/src/js/index.js" type="module"></script>
   </body>
 </html>
