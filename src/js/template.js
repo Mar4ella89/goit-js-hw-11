@@ -9,11 +9,11 @@ export const markupPhotoGallery = ({
 }) =>
   `
   <div class="photo-card">
-  <div class="gallery-img">
-    <a class="gallery__item" href="${largeImageURL}">
-      <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" width="275" height="200"/>
-      </a>
-      </div>
+    <div class="gallery-img">
+      <a class="gallery__item" href="${largeImageURL}">
+        <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" width="275" height="200"/>
+        </a>
+    </div>
       <div class="info">
         <p class="info-item">
           <b>Likes</b>

@@ -5,13 +5,15 @@ import GalleryApiService from './galleryService';
 import { markupPhotoGallery } from './template';
 import LoadMoreBtn from './load-more-btn';
 
-// const lightbox = new SimpleLightbox('.gallery a', {
-//   captionsData: 'alt',
-//   captionPosition: 'bottom',
-//   captionDelay: 250,
-//   disableScroll: false,
-//   scrollZoom: false,
-// });
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+  disableScroll: false,
+  scrollZoom: false,
+});
+
+console.dir(lightbox)
 
 const ref = {
   searchForm: document.querySelector('#search-form'),
@@ -78,6 +80,7 @@ function render({ hits, totalHits }) {
     'beforeend',
     renderImgContainer.join('')
   );
+  lightbox.refresh()
 
   if (totalImage >= totalHits) {
     loadMoreBtn.hide();
