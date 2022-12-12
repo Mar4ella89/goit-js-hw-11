@@ -31,6 +31,7 @@ export default class GalleryApiService {
       `/?key=${KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`
     );
     console.log(data);
+    this.incrementPage();
     return data;
   }
 
