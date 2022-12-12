@@ -61,30 +61,30 @@ function fetchNotify() {
           timeout: 3000,
         }
 )}
-
+let totalImage = 0;
 function render({ hits, totalHits }) {
+  
+  
   if (totalHits === 0) {
     fetchFailure();
     loadMoreBtn.hide();
     return;
   }
-  // else if (hits.length === totalHits) {
-  //   loadMoreBtn.disable();
-  //   Notiflix.Notify.info(
-  //     `We're sorry, but you've reached the end of search results.`,
-  //     {
-  //       clickToClose: true,
-  //       timeout: 3000,
-  //     }
-  //   );
-  //   loadMoreBtn.hide();
-  // return;
-  // }
+  
   const renderImgContainer = hits.map(markupPhotoGallery);
+  totalImage = totalImage + hits.length;
+  console.log(totalImage)
   ref.photosContainer.insertAdjacentHTML(
     'beforeend',
     renderImgContainer.join('')
   );
+
+  if (totalImage >= totalHits) {
+    loadMoreBtn.hide();
+    fetchNotify()
+    
+  return;
+  }
 }
 
 ref.searchForm.addEventListener('submit', onSearch);
