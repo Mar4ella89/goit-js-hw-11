@@ -125,6 +125,19 @@ function clearGallery() {
   ref.photosContainer.innerHTML = '';
 }
 
-// fetch(
-//     'https://restcountries.com/v3.1/name/ukraine'
-//   ).then(response => response.json()).then(console.log)
+function scroll() {
+  const { height: cardHeight } = document
+  .querySelector(".gallery")
+  .firstElementChild.getBoundingClientRect();
+  
+  console.log({ height: cardHeight } )
+
+window.scrollBy({
+  top: cardHeight * (-100),
+  behavior: "smooth",
+});
+}
+
+const scrlUp = document.querySelector('.scrollUp')
+scrlUp.addEventListener('click', scroll)
+
