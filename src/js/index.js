@@ -125,19 +125,19 @@ function clearGallery() {
   ref.photosContainer.innerHTML = '';
 }
 
-function scroll() {
-  const { height: cardHeight } = document
-  .querySelector(".gallery")
-  .firstElementChild.getBoundingClientRect();
+// function scroll() {
+//   const { height: cardHeight } = document
+//   .querySelector(".gallery")
+//   .firstElementChild.getBoundingClientRect();
   
-  console.log({ height: cardHeight } )
+//   console.log({ height: cardHeight } )
 
-window.scrollBy({
-  top: cardHeight * (-100),
-  behavior: "smooth",
-});
-}
+// window.scrollBy({
+//   top: cardHeight * (-100),
+//   behavior: "smooth",
+// });
+// }
 
-const scrlUp = document.querySelector('.scrollUp')
-scrlUp.addEventListener('click', scroll)
+// const scrlUp = document.querySelector('.scrollUp')
+// scrlUp.addEventListener('click', scroll)
 
