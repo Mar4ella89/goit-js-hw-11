@@ -138,6 +138,7 @@ function clearGallery() {
 // });
 // }
 
+
 // const scrlUp = document.querySelector('.scrollUp')
 // scrlUp.addEventListener('click', scroll)
 
